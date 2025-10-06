@@ -126,5 +126,5 @@ out/
 tmp/
 temp/
 
-# Documentation (optional - uncomment if you don't want to track these)
+# Documentation
 # *.md
