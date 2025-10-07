@@ -225,6 +225,26 @@
   transform: translateY(-1px);
 }
 
+.springer-button.coming-soon {
+  background: #e0e7ff;
+  color: #6366f1;
+  border: 1px dashed #c7d2fe;
+  cursor: help;
+  position: relative;
+}
+
+.springer-button.coming-soon:hover {
+  background: #ddd6fe;
+  color: #7c3aed;
+  transform: none;
+  border-color: #a78bfa;
+}
+
+.springer-button.coming-soon::after {
+  
+  margin-left: 0.25rem;
+}
+
 .edit-button {
   background: #f59e0b;
   color: white;

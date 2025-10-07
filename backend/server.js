@@ -13,6 +13,7 @@ connectDB();
 // Route files
 const authRoutes = require('./routes/auth');
 const paperRoutes = require('./routes/papers');
+const latexRoutes = require('./routes/latex');
 
 const app = express();
 
@@ -29,6 +30,7 @@ app.use(cors({
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/papers', paperRoutes);
+app.use('/api/latex', latexRoutes);
 
 // Health check route
 app.get('/', (req, res) => {

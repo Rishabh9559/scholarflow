@@ -137,4 +137,23 @@ export const papersAPI = {
   }
 };
 
+// LaTeX API calls
+export const latexAPI = {
+  // Download IEEE format LaTeX file
+  downloadIEEE: async (paperId) => {
+    const response = await api.get(`/latex/ieee/${paperId}`, {
+      responseType: 'blob'
+    });
+    return response.data;
+  },
+
+  // Preview IEEE format (get LaTeX content as text)
+  previewIEEE: async (paperId) => {
+    const response = await api.get(`/latex/preview/ieee/${paperId}`);
+    return response.data;
+  }
+
+
+};
+
 export default api;

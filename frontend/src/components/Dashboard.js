@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LatexPreview from './LatexPreview';
 import './Dashboard.css';
 
 const Dashboard = ({ papers, onLogout, onDelete, user }) => {
   const navigate = useNavigate();
+  const [previewModal, setPreviewModal] = useState({ show: false, paperId: null, format: null, paperTitle: '' });
 
   const handleAddPaper = () => {
     navigate('/add-paper');
   };
 
-  const handleConvertFormat = (paperId, format) => {
-    // Simulate format conversion
-    alert(`Converting paper ${paperId} to ${format} format...`);
+  const handleShowPreview = (paperId, format, paperTitle) => {
+    setPreviewModal({
+      show: true,
+      paperId,
+      format,
+      paperTitle
+    });
   };
 
-  const handleDownloadPDF = (paperId) => {
-    // Simulate PDF download
-    alert(`Downloading PDF for paper ${paperId}...`);
+  const handleClosePreview = () => {
+    setPreviewModal({ show: false, paperId: null, format: null, paperTitle: '' });
   };
 
   const handleEditPaper = (paperId) => {
@@ -102,31 +107,24 @@ const Dashboard = ({ papers, onLogout, onDelete, user }) => {
                   onClick={() => handleEditPaper(paper._id)}
                   className="action-button edit-button"
                 >
-                  ✏️ Edit Paper
+                  Edit Paper
                 </button>
                 <button 
-                  onClick={() => handleConvertFormat(paper._id, 'IEEE')}
+                  onClick={() => handleShowPreview(paper._id, 'IEEE', paper.title)}
                   className="action-button ieee-button"
                 >
-                  Convert to IEEE Format
+                  IEEE LaTeX
                 </button>
                 <button 
-                  onClick={() => handleConvertFormat(paper._id, 'Springer')}
-                  className="action-button springer-button"
+                  className="action-button springer-button coming-soon"
                 >
-                  Convert to Springer Format
-                </button>
-                <button 
-                  onClick={() => handleDownloadPDF(paper._id)}
-                  className="action-button download-button"
-                >
-                  📄 Download PDF
+                  Springer LaTeX (Soon)
                 </button>
                 <button 
                   onClick={() => handleDeletePaper(paper._id, paper.title)}
                   className="action-button delete-button"
                 >
-                  🗑️ Delete Paper
+                  Delete Paper
                 </button>
               </div>
             </div>
@@ -148,6 +146,15 @@ const Dashboard = ({ papers, onLogout, onDelete, user }) => {
       <button onClick={handleAddPaper} className="floating-add-button">
         <span className="add-icon">+</span>
       </button>
+
+      {previewModal.show && (
+        <LatexPreview
+          paperId={previewModal.paperId}
+          format={previewModal.format}
+          paperTitle={previewModal.paperTitle}
+          onClose={handleClosePreview}
+        />
+      )}
     </div>
   );
 };
