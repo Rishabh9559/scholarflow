@@ -1,11 +1,5 @@
 # ScholarFlow
 
-<div align="center">
-  <a href="https://youtu.be/QI8zSLf_HtQ" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.youtube.com/vi/QI8zSLf_HtQ/maxresdefault.jpg" alt="ScholarFlow Demo Thumbnail" width="100%" />
-  </a>
-</div>
-
 
 ## Why I Built ScholarFlow
 
@@ -16,6 +10,11 @@ ScholarFlow is a full-stack platform that helps researchers draft, manage, and e
 ## Video Demo
 
 > 🎥 Watch ScholarFlow on YouTube: [https://youtu.be/QI8zSLf_HtQ](https://youtu.be/QI8zSLf_HtQ)
+<div align="center">
+  <a href="https://youtu.be/QI8zSLf_HtQ" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.youtube.com/vi/QI8zSLf_HtQ/maxresdefault.jpg" alt="ScholarFlow Demo Thumbnail" width="100%" />
+  </a>
+</div>
 
 ## Key Features
 
