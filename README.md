@@ -9,7 +9,13 @@ ScholarFlow is a full-stack platform that helps researchers draft, manage, and e
 
 ## Video Demo
 
-> 🎥 Watch ScholarFlow in action: [Video Demo](https://your-demo-link-here)
+<div align="center">
+  <video src="scholarflow_demo-Made_by_rishabh.mp4" controls width="100%" preload="metadata">
+    Your browser does not support embedded videos. You can watch it on the link below instead.
+  </video>
+</div>
+
+<!-- > 🎥 Prefer an external player? [Watch ScholarFlow in action](https://your-demo-link-here) -->
 
 ## Key Features
 
