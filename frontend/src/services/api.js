@@ -139,9 +139,9 @@ export const papersAPI = {
 
 // LaTeX API calls
 export const latexAPI = {
-  // Download IEEE format LaTeX file
+  // Download IEEE format PDF compiled from LaTeX
   downloadIEEE: async (paperId) => {
-    const response = await api.get(`/latex/ieee/${paperId}`, {
+    const response = await api.get(`/latex/ieee/pdf/${paperId}`, {
       responseType: 'blob'
     });
     return response.data;

@@ -7,6 +7,7 @@ const LatexPreview = ({ paperId, format, paperTitle, onClose }) => {
   const [latexContent, setLatexContent] = useState('');
   const [error, setError] = useState('');
   const [copySuccess, setCopySuccess] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   const loadPreview = async () => {
     setLoading(true);
@@ -36,6 +37,12 @@ const LatexPreview = ({ paperId, format, paperTitle, onClose }) => {
   }, [paperId, format]);
 
   const handleDownload = async () => {
+    if (downloading) {
+      return;
+    }
+
+    setDownloading(true);
+    let shouldClose = false;
     try {
       let blob;
       if (format === 'IEEE') {
@@ -52,17 +59,22 @@ const LatexPreview = ({ paperId, format, paperTitle, onClose }) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
-      const filename = `${paperTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_${format.toLowerCase()}.tex`;
+  const filename = `${paperTitle.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_${format.toLowerCase()}.pdf`;
       link.setAttribute('download', filename);
       document.body.appendChild(link);
       link.click();
       link.remove();
       window.URL.revokeObjectURL(url);
 
-      onClose();
+      shouldClose = true;
     } catch (err) {
       console.error('Error downloading file:', err);
       setError('Failed to download file. Please try again.');
+    } finally {
+      setDownloading(false);
+      if (shouldClose) {
+        onClose();
+      }
     }
   };
 
@@ -120,8 +132,19 @@ const LatexPreview = ({ paperId, format, paperTitle, onClose }) => {
               <button onClick={handleCopyToClipboard} className="copy-button">
                 📋 Copy LaTeX
               </button>
-              <button onClick={handleDownload} className="download-button-modal">
-                💾 Download .tex
+              <button
+                onClick={handleDownload}
+                className="download-button-modal"
+                disabled={downloading}
+              >
+                {downloading ? (
+                  <>
+                    <span className="button-spinner" aria-hidden="true" />
+                    Compiling…
+                  </>
+                ) : (
+                  '💾 Download PDF'
+                )}
               </button>
               <button onClick={onClose} className="cancel-button-modal">
                 Cancel
@@ -131,9 +154,15 @@ const LatexPreview = ({ paperId, format, paperTitle, onClose }) => {
         )}
 
         <div className="latex-preview-footer">
-          <p className="latex-info">
-            💡 <strong>Tip:</strong> Download the .tex file and compile it manually with your preferred LaTeX editor.
-          </p>
+          {downloading ? (
+            <p className="latex-info downloading-info">
+              ⏱️ Compiling your PDF. This may take a few moments…
+            </p>
+          ) : (
+            <p className="latex-info">
+              💡 <strong>Tip:</strong> Download the compiled PDF and share it directly, or copy the LaTeX source to tweak before regenerating.
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -285,11 +285,31 @@
 .download-button-modal {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .download-button-modal:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.download-button-modal:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+  box-shadow: none;
+}
+
+.button-spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
 }
 
 .cancel-button-modal {
@@ -317,6 +337,11 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+.downloading-info {
+  color: #1e40af;
+  font-weight: 600;
 }
 
 /* Responsive design */
