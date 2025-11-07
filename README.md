@@ -155,6 +155,4 @@ Gmail requires either an application-specific password or OAuth2. Ensure "Less s
 3. Commit changes following conventional commit messages.
 4. Push and open a pull request.
 
-## License
 
-This project is licensed under the ISC License. See the `LICENSE` file if available, or define your licensing terms here.
